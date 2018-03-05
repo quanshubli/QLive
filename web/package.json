@@ -1,0 +1,11 @@
+{
+  "name": "qlive-web",
+  "version": "1.0.0",
+  "description": "web of QLive",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "quanshubli",
+  "license": "ISC"
+}
