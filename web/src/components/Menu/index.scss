@@ -1,0 +1,17 @@
+@import "../../assets/style/default.scss";
+
+.menu {
+    display: inline-block;
+}
+
+.menu-item {
+    display: inline-block;
+}
+
+.menu-item-link {
+    display: block;
+    padding: 10px;
+}
+.menu-item-link:hover {
+    color: $theme-color;
+}

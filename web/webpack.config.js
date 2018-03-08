@@ -33,8 +33,7 @@ module.exports = {
                         },
                         "sass-loader"
                     ]
-                }),
-                exclude: path.resolve(__dirname, "node_modules")
+                })
             },
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
@@ -53,7 +52,7 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin({
-            filename: "css/[name].css"
+            filename: "style/[name].css"
         }),
         // new WebPlugin({
         //     template: "./src/index.html",

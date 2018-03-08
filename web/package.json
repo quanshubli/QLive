@@ -13,6 +13,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.3",
+    "babel-plugin-import": "^1.6.5",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
@@ -27,6 +28,7 @@
     "web-webpack-plugin": "^1.10.2"
   },
   "dependencies": {
+    "antd": "^3.2.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
