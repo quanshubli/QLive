@@ -7,6 +7,9 @@ import "../assets/style/base.scss";
 import Header from "../components/Header";
 import Logo from "../components/Logo";
 import Menu from "../components/Menu";
+import Home from "../components/Home";
+import All from "../components/All";
+import Sort from "../components/Sort";
 
 class Index extends Component {
     constructor(props) {
@@ -15,6 +18,7 @@ class Index extends Component {
     }
 
     onMenuClick(href) {
+        this.props.history.push(href);
     }
 
     render() {
@@ -23,11 +27,14 @@ class Index extends Component {
                 <Header>
                     <Logo text="QLive" />
                     <Menu style={{ marginLeft: 50 }} onClick={this.onMenuClick}>
-                        <Menu.Item href="home">首页</Menu.Item>
-                        <Menu.Item href="whole">全部</Menu.Item>
-                        <Menu.Item href="sort">分类</Menu.Item>
+                        <Menu.Item href="/">首页</Menu.Item>
+                        <Menu.Item href="/all">全部</Menu.Item>
+                        <Menu.Item href="/sort">分类</Menu.Item>
                     </Menu>
                 </Header>
+                <Route exact path="/" component={Home} />
+                <Route path="/all" component={All} />
+                <Route path="/sort" component={Sort} />
             </div>
         )
     }
@@ -36,7 +43,8 @@ class Index extends Component {
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
-            <Route exact path="/" component={Index} />
+            <Route path="/" component={Index} />
+            {/* <Route path="/all" component={All} /> */}
         </Switch>
     </BrowserRouter>,
     window.document.getElementById("root")
