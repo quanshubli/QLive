@@ -1,0 +1,40 @@
+.live-list {
+  padding-top: 20px;
+  li {
+    display: inline-block;
+    margin-bottom: 20px;
+    width: 25%;
+  }
+}
+.live-item {
+  // display: inline-block;
+  border: 1px solid #eee;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+  &:hover {
+    box-shadow: 0 0 10px 2px #eee;
+  }
+  img {
+    vertical-align: top;
+  }
+  .info {
+    padding: 5px;
+    .line {
+      position: relative;
+      margin-bottom: 5px;
+      p {
+        width: 70%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      span {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 12px;
+        line-height: 22px;
+      }
+    }
+  }
+}
