@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Header from "../components/Header";
 import Logo from "../components/Logo";
 import Menu from "../components/Menu";
 import Home from "./Home";
-import AllLives from "./AllLives";
-import Sort from "./Sort";
+import Lives from "./Lives";
+import Sorts from "./Sorts";
 
 import "../assets/style/base.scss";
 
@@ -20,13 +20,16 @@ const Index = (props) => {
         <Logo text="QLive" />
         <Menu style={{ marginLeft: 50 }} onClick={handleMenuClick}>
           <Menu.Item href="/">首页</Menu.Item>
-          <Menu.Item href="/all">全部</Menu.Item>
-          <Menu.Item href="/sort">分类</Menu.Item>
+          <Menu.Item href="/lives">全部</Menu.Item>
+          <Menu.Item href="/sorts">分类</Menu.Item>
         </Menu>
       </Header>
-      <Route exact path="/" component={Home} />
-      <Route path="/all" component={AllLives} />
-      <Route path="/sort" component={Sort} />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/lives" exact component={Lives} />
+        <Route path="/lives/:sort" component={Lives} />
+        <Route path="/sorts" component={Sorts} />
+      </Switch>
     </div>
   );
 };
