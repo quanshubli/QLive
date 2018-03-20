@@ -1,6 +1,7 @@
 var qlivePool = require("../config/mysql");
 var getPandaLives = require("./panda");
 var getDouyuLives = require("./douyu");
+var getHuomaoLives = require("./huomao");
 
 function getLives() {
   var lives = [];
@@ -9,7 +10,10 @@ function getLives() {
       lives = lives.concat(pandaLives);
       getDouyuLives(function (douyuLives) {
         lives = lives.concat(douyuLives);
-        resolve(lives);
+        getHuomaoLives(function (huomaoLives) {
+          lives = lives.concat(huomaoLives);
+          resolve(lives);
+        });
       });
     });
   })

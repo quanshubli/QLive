@@ -8,10 +8,13 @@ module.exports = {
   panda: {
     type: 1,
     href: function (room) {
-      return "http://panda.tv/" + room;
+      return "https://www.panda.tv/" + room;
     }
   },
   huomao: {
-    type: 2
+    type: 2,
+    href: function (room) {
+      return "https://www.huomao.com/" + room;
+    }
   }
 };
