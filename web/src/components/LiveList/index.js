@@ -1,17 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
 
 import "./index.scss";
 
 const LiveItem = ({ style, data }) => {
   return (
-    <Link className="live-item" to={data.href}>
+    <a className="live-item" href={data.href} target="_blank">
       <div className="picture" style={{
         backgroundImage: `url(${data.picture})`
       }}></div>
       <div className="info">
         <div className="line">
-          <p>{data.name}</p>
+          <p title={data.name}>{data.name}</p>
           <span>{data.sort_cname}</span>
         </div>
         <div className="line">
@@ -19,29 +18,41 @@ const LiveItem = ({ style, data }) => {
           <span>{data.person_num}</span>
         </div>
       </div>
-    </Link>
+    </a>
   );
 };
 LiveItem.defaultProps = {
   data: {}
 };
 
-const LiveList = (props) => {
-  const { lives, history } = props;
-  return (
-    <ul className="live-list">
-      {
-        lives.map((item, index) => (
-          <li key={`${item.room_id}`}>
-            <LiveItem data={item} history={history} />
-          </li>
-        ))
-      }
-    </ul>
-  );
-};
-LiveList.defaultProps = {
-  lives: []
-};
+class LiveList extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  static defaultProps = {
+    lives: []
+  }
+
+  componentDidMount() {
+    const { getLives } = this.props;
+    getLives();
+  }
+
+  render() {
+    const { lives, history } = this.props;
+    return (
+      <ul className="live-list">
+        {
+          lives.map((item, index) => (
+            <li key={`${item.room_id}`}>
+              <LiveItem data={item} history={history} />
+            </li>
+          ))
+        }
+      </ul>
+    );
+  }
+}
 
 export default LiveList;

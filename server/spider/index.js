@@ -42,6 +42,7 @@ function getLives() {
               console.log(err);
               return;
             }
+            connection.release();
           });
         });
       });
