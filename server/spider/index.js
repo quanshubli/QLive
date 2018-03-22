@@ -6,15 +6,9 @@ var getHuomaoLives = require("./huomao");
 function getLives() {
   var lives = [];
   new Promise(function (resolve, reject) {
-    getPandaLives(function (pandaLives) {
-      lives = lives.concat(pandaLives);
-      getDouyuLives(function (douyuLives) {
-        lives = lives.concat(douyuLives);
-        getHuomaoLives(function (huomaoLives) {
-          lives = lives.concat(huomaoLives);
-          resolve(lives);
-        });
-      });
+    getDouyuLives(function (douyuLives) {
+      lives = lives.concat(douyuLives);
+      resolve(lives);
     });
   })
     .then(function (lives) {

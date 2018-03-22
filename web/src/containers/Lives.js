@@ -5,16 +5,17 @@ import LiveList from "../components/LiveList";
 import { fetchLives } from "../model/actions";
 
 const mapStateToProps = state => {
-  const { lives } = state;
+  const { lives, livesLoading } = state;
   return {
-    lives
+    lives,
+    livesLoading
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getLives: () => {
-      dispatch(fetchLives());
+    fetchLives: (page, pageSize) => {
+      dispatch(fetchLives(page, pageSize));
     }
   }
 };

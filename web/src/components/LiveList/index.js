@@ -1,56 +1,59 @@
 import React, { Component } from "react";
+import List from "./list";
+import { Pagination, Spin } from "antd";
 
 import "./index.scss";
-
-const LiveItem = ({ style, data }) => {
-  return (
-    <a className="live-item" href={data.href} target="_blank">
-      <div className="picture" style={{
-        backgroundImage: `url(${data.picture})`
-      }}></div>
-      <div className="info">
-        <div className="line">
-          <p title={data.name}>{data.name}</p>
-          <span>{data.sort_cname}</span>
-        </div>
-        <div className="line">
-          <p>{data.nickname}</p>
-          <span>{data.person_num}</span>
-        </div>
-      </div>
-    </a>
-  );
-};
-LiveItem.defaultProps = {
-  data: {}
-};
 
 class LiveList extends Component {
   constructor(props) {
     super(props);
+    this.handlePageChange = this.handlePageChange.bind(this);
   }
 
   static defaultProps = {
-    lives: []
+    lives: {}
+  }
+
+  state = {
+    current: 1,
+    pageSize: 40
   }
 
   componentDidMount() {
-    const { getLives } = this.props;
-    getLives();
+    const { fetchLives } = this.props;
+    const { current, pageSize } = this.state;
+    fetchLives(current, pageSize);
+  }
+
+  handlePageChange(page, pageSize) {
+    const { fetchLives } = this.props;
+    fetchLives(page, pageSize);
+    this.setState({
+      current: page
+    });
   }
 
   render() {
-    const { lives, history } = this.props;
+    const { lives, livesLoading } = this.props;
+    const { current, pageSize } = this.state;
     return (
-      <ul className="live-list">
+      <div>
         {
-          lives.map((item, index) => (
-            <li key={`${item.room_id}`}>
-              <LiveItem data={item} history={history} />
-            </li>
-          ))
+          livesLoading ?
+            <Spin tip="Loading" size="large">
+              <div style={{ minHeight: 500 }} />  
+            </Spin>  
+            :
+            <List data={lives.list} />
         }
-      </ul>
+        <Pagination
+          style={{ textAlign: "center" }}
+          current={current}
+          total={lives.count}
+          pageSize={pageSize}
+          onChange={this.handlePageChange}
+        />
+      </div>
     );
   }
 }

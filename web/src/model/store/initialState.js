@@ -14,5 +14,9 @@ export default {
       picture: "/assets/image/mclaren.jpg"
     }
   ],
-  lives: []
+  lives: {
+    count: 0,
+    list: []
+  },
+  livesLoading: false
 };
