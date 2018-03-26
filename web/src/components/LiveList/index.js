@@ -20,9 +20,10 @@ class LiveList extends Component {
   }
 
   componentDidMount() {
-    const { fetchLives } = this.props;
+    const { fetchLives, match } = this.props;
     const { current, pageSize } = this.state;
-    fetchLives(current, pageSize);
+    const { sort } = match.params;
+    fetchLives(current, pageSize, sort);
   }
 
   handlePageChange(page, pageSize) {

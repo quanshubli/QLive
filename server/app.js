@@ -6,9 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var lives = require('./routes/lives');
-
-var getLives = require('./spider');
+var live = require('./routes/live');
+var sort = require('./routes/sort');
 
 var app = express();
 
@@ -24,9 +23,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 爬取直播
-getLives();
-
 app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
   // res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
@@ -34,8 +30,10 @@ app.all('*', function (req, res, next) {
   next();
 });
 
+// 路由
 app.use('/', index);
-app.use('/lives', lives);
+app.use('/live', live);
+app.use('/sort', sort);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

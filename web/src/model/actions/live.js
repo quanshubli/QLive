@@ -1,10 +1,10 @@
 import fetch from "../../service/api";
 
-export const fetchLives = (page, pageSize) => {
+export const fetchLives = (page, pageSize, sort) => {
   return dispatch => {
     dispatch(changeLivesLoading(true));
     return fetch.get(
-      `/lives?p=${page || 1}&n=${pageSize || 40}`,
+      `/live?p=${page || 1}&n=${pageSize || 40}&sort=${sort}`,
       (data) => {
         if (data.data) {
           dispatch(getLives(data.data.lives));

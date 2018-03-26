@@ -9,7 +9,7 @@ const AllLives = (props) => {
   return (
     <Container width={1100}>
       <p className="all-title">全部直播</p>
-      <LivesContainer />
+      <LivesContainer {...props} />
     </Container>
   );
 };

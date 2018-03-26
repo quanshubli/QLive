@@ -14,8 +14,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchLives: (page, pageSize) => {
-      dispatch(fetchLives(page, pageSize));
+    fetchLives: (page, pageSize, sort) => {
+      dispatch(fetchLives(page, pageSize, sort));
     }
   }
 };

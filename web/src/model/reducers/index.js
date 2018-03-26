@@ -3,9 +3,9 @@ import { combineReducers } from "redux";
 
 import {
   lives,
-  livesLoading,
-  sorts
+  livesLoading
 } from "./live";
+import { sorts } from "./sort";
 
 const rootReducer = combineReducers({
   lives,

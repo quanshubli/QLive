@@ -26,7 +26,7 @@ const Index = (props) => {
       </Header>
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/lives" exact component={Lives} />
+        {/* <Route path="/lives" component={Lives} /> */}
         <Route path="/lives/:sort" component={Lives} />
         <Route path="/sorts" component={Sorts} />
       </Switch>
