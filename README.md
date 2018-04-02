@@ -16,3 +16,5 @@ A live aggregation web for fun
 * 处理请求，执行数据库操作。
 
 ### 前端（React+Redux）
+
+* 将一个局部页面作为一个container组件，获取数据传递给基础组件

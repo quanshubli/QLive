@@ -1,17 +1,11 @@
 import React from "react";
 
-import Container from "../../components/Container";
-import LivesContainer from "../../containers/Lives";
+import AllLives from "../../containers/AllLives";
 
-import "./index.scss";
-
-const AllLives = (props) => {
+const Lives = (props) => {
   return (
-    <Container width={1100}>
-      <p className="all-title">全部直播</p>
-      <LivesContainer {...props} />
-    </Container>
+    <AllLives {...props} />
   );
 };
 
-export default AllLives;
+export default Lives;

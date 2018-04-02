@@ -1,15 +1,12 @@
 import React from "react";
 
 import Container from "../../components/Container";
-import SortContainer from "../../containers/Sorts";
+import AllSorts from "../../containers/AllSorts";
 
-const Sort = (props) => {
+const Sorts = (props) => {
   return (
-    <Container width={1100}>
-      <p className="all-title">全部分类</p>
-      <SortContainer />
-    </Container>
+    <AllSorts />
   );
 };
 
-export default Sort;
+export default Sorts;

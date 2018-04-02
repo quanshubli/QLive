@@ -1,12 +1,13 @@
 // 初始 State
 export default {
-  sorts: {
-    count: 0,
-    list: []
-  },
+  livesLoading: false,
   lives: {
     count: 0,
     list: []
   },
-  livesLoading: false
+  hotLives: [],
+  sorts: {
+    count: 0,
+    list: []
+  },
 };

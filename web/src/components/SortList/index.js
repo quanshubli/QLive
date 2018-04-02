@@ -2,49 +2,24 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import "./index.scss";
+import SortItem from "../SortItem";
 
-const SortItem = ({ data }) => {
+const SortList = (props) => {
+  const { sorts } = props;
   return (
-    <Link className="sort-item" to={`/lives/${data.name}`}>
-      <div className="picture" style={{
-        backgroundImage: `url(${data.picture})`
-      }}></div>
-      <p>{data.name}</p>
-    </Link>
+    <ul className="sort-list">
+      {
+        sorts.map((item, index) => (
+          <li key={`${index}-${item.id}`}>
+            <SortItem sort={item} />
+          </li>
+        ))
+      }
+    </ul>
   );
 };
-
-class SortList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  static defaultProps = {
-    sorts: {
-      count: 0,
-      list: []
-    }
-  }
-
-  componentDidMount() {
-    const { fetchSorts } = this.props;
-    fetchSorts();
-  }
-
-  render() {
-    const { sorts } = this.props;
-    return (
-      <ul className="sort-list">
-        {
-          sorts.list.map((item, index) => (
-            <li key={`${index}-${item.id}`}>
-              <SortItem data={item} />
-            </li>
-          ))
-        }
-      </ul>
-    );
-  }
-}
+SortList.defaultProps = {
+  sorts: []
+};
 
 export default SortList;
