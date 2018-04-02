@@ -27,8 +27,9 @@ class LiveList extends Component {
   }
 
   handlePageChange(page, pageSize) {
-    const { fetchLives } = this.props;
-    fetchLives(page, pageSize);
+    const { fetchLives, match } = this.props;
+    const { sort } = match.params;
+    fetchLives(page, pageSize, sort);
     this.setState({
       current: page
     });

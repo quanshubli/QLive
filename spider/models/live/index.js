@@ -1,4 +1,4 @@
-var pool = require("../config/mysql");
+var pool = require("../../config/mysql");
 var getDouyuLives = require("./douyu");
 var getPandaLives = require("./panda");
 var getHuomaoLives = require("./huomao");
@@ -67,7 +67,7 @@ module.exports = function getLives() {
       });
     })
     .then(function (connection) {
-      console.log("Over");
+      console.log("GET Lives Over");
       connection.release();
     })
     .catch(function (err) {

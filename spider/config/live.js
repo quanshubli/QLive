@@ -1,6 +1,7 @@
 module.exports = {
   douyu: {
     type: 0,
+    sortSource: "https://www.douyu.com/directory",
     source: function (page) {
       return "https://www.douyu.com/gapi/rkc/directory/0_0/" + page;
     },
@@ -10,6 +11,7 @@ module.exports = {
   },
   panda: {
     type: 1,
+    sortSource: "https://www.panda.tv/cate",
     source: function (page) {
       return "https://www.panda.tv/live_lists?order=person_num&pageno=" + page + "&pagenum=120";
     },
@@ -19,6 +21,7 @@ module.exports = {
   },
   huomao: {
     type: 2,
+    sortSource: "https://www.huomao.com/game",
     source: function (page) {
       return "https://www.huomao.com/channels/channel.json?page=" + page + "&game_url_rule=all";
     },

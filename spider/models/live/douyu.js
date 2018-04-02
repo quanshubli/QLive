@@ -1,6 +1,6 @@
 var axios = require("axios");
 var async = require("async");
-var config = require("../config/live");
+var config = require("../../config/live");
 var douyuConfig = config.douyu;
 
 function getDouyuLives(callback) {

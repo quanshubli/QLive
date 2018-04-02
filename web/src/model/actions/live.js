@@ -4,7 +4,7 @@ export const fetchLives = (page, pageSize, sort) => {
   return dispatch => {
     dispatch(changeLivesLoading(true));
     return fetch.get(
-      `/live?p=${page || 1}&n=${pageSize || 40}&sort=${sort}`,
+      `/live?p=${page || 1}&n=${pageSize || 40}&sort=${sort || ""}`,
       (data) => {
         if (data.data) {
           dispatch(getLives(data.data.lives));
