@@ -4,7 +4,7 @@ import AllLives from "../../containers/AllLives";
 
 const Lives = (props) => {
   return (
-    <AllLives {...props} />
+    <AllLives key={props.match.path} {...props} />
   );
 };
 

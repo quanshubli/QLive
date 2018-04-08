@@ -9,7 +9,7 @@ const LiveList = ({ lives }) => {
     <ul className="live-list">
       {
         lives.map((item, index) => (
-          <li key={`${item.room_id}`}>
+          <li key={`${item.id}`}>
             <LiveItem live={item} />
           </li>
         ))

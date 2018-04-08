@@ -2,10 +2,10 @@ import React from "react";
 
 import "./index.scss";
 
-const Header = (props) => (
+const HeaderWrapper = (props) => (
     <div className="header">
         {props.children}
     </div>
 );
 
-export default Header;
+export default HeaderWrapper;

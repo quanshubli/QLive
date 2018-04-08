@@ -1,8 +1,9 @@
 // 整合 actions
-import { fetchLives } from "./live";
+import { fetchLives, fetchLivesByKeyword } from "./live";
 import { fetchSorts } from "./sort";
 
 export {
+  fetchLivesByKeyword,
   fetchLives,
   fetchSorts
 };

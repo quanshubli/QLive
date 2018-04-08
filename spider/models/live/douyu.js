@@ -4,7 +4,18 @@ var config = require("../../config/live");
 var douyuConfig = config.douyu;
 
 function getDouyuLives(callback) {
-  var pageNum = 5;  // 斗鱼平台全部直播页数
+  // 获取页数
+  axios.get(douyuConfig.source(1))
+    .then(function (res) {
+      var pageNum = res.data.data.pgcnt || 1;
+      getLives(pageNum, callback);
+    })
+    .catch(function (err) {
+      throw err;
+    });
+}
+
+function getLives(pageNum, callback) {
   var urls = [];
   var lives = [];
 
@@ -35,7 +46,7 @@ function getDouyuLives(callback) {
             room_id: douyuConfig.type + "_" + item.rid,
             type: douyuConfig.type,
             href: douyuConfig.href(item.rid),
-            name: item.rn,
+            name: item.rn.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "*emoji*"),
             sort_cname: item.c2name,
             sort_ename: item.c2name,
             picture: item.rs1,

@@ -2,7 +2,7 @@ var express = require('express');
 var qlivePool = require('../config/mysql');
 var router = express.Router();
 
-// GET 获取直播列表
+// GET (根据分类)获取直播列表
 router.get('/', function (req, res) {
   var page = parseInt(req.query.p || 1, 10);
   var pageSize = parseInt(req.query.n || 40, 10);
@@ -62,5 +62,10 @@ router.get('/', function (req, res) {
       });
     });
 });
+
+// 根据关键词搜索直播间
+// router.get('/search', function (req, res) {
+//   var keyword = req.query.keyword
+// });
 
 module.exports = router;

@@ -4,7 +4,15 @@ var config = require("../../config/live");
 var pandaConfig = config.panda;
 
 function getPandaLives(callback) {
-  var pageNum = 5;  // 熊猫平台全部直播页数
+  axios.get(pandaConfig.source(1))
+    .then(function (res) {
+      var total = res.data.data.total;
+      var pageNum = Math.ceil(total / pandaConfig.pageSize);
+      getLives(pageNum, callback);
+  })
+}
+
+function getLives(pageNum, callback) {
   var urls = [];
   var lives = [];
 
@@ -35,7 +43,7 @@ function getPandaLives(callback) {
             room_id: pandaConfig.type + "_" + item.id,
             type: pandaConfig.type,
             href: pandaConfig.href(item.id),
-            name: item.name,
+            name: item.name.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "*emoji*"),
             sort_cname: item.classification.cname,
             sort_ename: item.classification.ename,
             picture: item.pictures.img,

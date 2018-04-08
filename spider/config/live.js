@@ -12,6 +12,7 @@ module.exports = {
   panda: {
     type: 1,
     sortSource: "https://www.panda.tv/cate",
+    pageSize: 120,  // 熊猫平台一页的直播间数量
     source: function (page) {
       return "https://www.panda.tv/live_lists?order=person_num&pageno=" + page + "&pagenum=120";
     },
