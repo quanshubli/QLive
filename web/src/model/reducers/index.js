@@ -6,11 +6,13 @@ import {
   livesLoading
 } from "./live";
 import { sorts } from "./sort";
+import { search } from "./search";
 
 const rootReducer = combineReducers({
   lives,
   livesLoading,
-  sorts
+  sorts,
+  search
 });
 
 export default rootReducer;

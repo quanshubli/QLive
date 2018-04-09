@@ -5,6 +5,10 @@ export default {
     count: 0,
     list: []
   },
+  search: {
+    sorts: [],
+    lives: []
+  },
   sorts: {
     count: 0,
     list: []

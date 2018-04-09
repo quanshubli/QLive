@@ -37,11 +37,11 @@ class AllLives extends Component {
   }
 
   render() {
-    const { lives, livesLoading } = this.props;
+    const { lives, livesLoading, match } = this.props;
     const { current, pageSize } = this.state;
     return (
       <Container width={1100}>
-        <p className="all-title">全部直播</p>
+        <p className="all-title">{match.params.sort || '全部直播'}</p>
         {
           livesLoading ?
             <Spin tip="Loading" size="large">

@@ -16,22 +16,6 @@ export const fetchLives = (page, pageSize, sort) => {
   };
 };
 
-// 根据关键字获取直播间
-export const fetchLivesByKeyword = (keyword) => {
-  console.log(keyword)
-  return dispatch => {
-    dispatch(changeLivesLoading(true));
-    return fetch.get(
-      `/live/search?keyword=${keyword}`,
-      (data) => {
-        if (data.data) {
-          console.log(data.data)
-        }
-      }
-    );
-  };
-};
-
 export const GET_LIVES = "GET_LIVES";
 export const getLives = (lives) => {
   return {

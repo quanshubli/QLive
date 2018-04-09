@@ -23,7 +23,3 @@ export const livesLoading = (state = false, action) => {
       return state;
   }
 };
-
-export const sorts = (state = [], action) => {
-  return state;
-};

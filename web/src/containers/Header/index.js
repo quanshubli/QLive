@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchLivesByKeyword } from "../../model/actions";
 
 import HeaderWrapper from "../../components/HeaderWrapper";
 import Logo from "../../components/Logo";
@@ -14,8 +13,10 @@ const Header = (props) => {
     history.push(href);
   };
   const handleSearch = (value) => {
-    dispatch(fetchLivesByKeyword(value));
-    history.push("/lives");
+    if (value == '') {
+      return;
+    }
+    history.push(`/search/${value}`);
   };
   return (
     <HeaderWrapper>
