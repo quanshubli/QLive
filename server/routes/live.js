@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
     sql2 = `SELECT * FROM room WHERE sort_cname='${sort}' ORDER BY person_num DESC LIMIT ${pageSize} OFFSET ${pageSize * (page - 1)}`;
   } else {
     sql1 = `SELECT COUNT(*) as count FROM room`;
-    sql2 = `SELECT * FROM room WHERE id > ${(page - 1) * pageSize} LIMIT ${pageSize}`;
+    sql2 = `SELECT * FROM room ORDER BY person_num DESC LIMIT ${pageSize} OFFSET ${pageSize * (page - 1)}`;
   }
   var lives = {};
 
@@ -39,19 +39,24 @@ router.get('/', function (req, res) {
       });
     })
     .then(function (connection) {
-      connection.query(sql2, function (err, result) {
-        if (err) {
-          throw err;
-        }
-        lives.list = result;
-        connection.release();
-        res.json({
-          error_code: 0,
-          message: "获取成功",
-          data: {
-            lives
+      return new Promise(function (resolve) {
+        connection.query(sql2, function (err, result) {
+          if (err) {
+            throw err;
           }
+          lives.list = result;
+          resolve(connection);
         });
+      });
+    })
+    .then(function (connection) {
+      connection.release();
+      res.json({
+        error_code: 0,
+        message: "获取成功",
+        data: {
+          lives
+        }
       });
     })
     .catch(function (err) {
@@ -63,7 +68,7 @@ router.get('/', function (req, res) {
     });
 });
 
-// // 根据关键词搜索直播间
+// GET 根据关键词搜索直播间
 router.get('/search', function (req, res) {
   var keyword = req.query.keyword;
   var sql1 = `SELECT * FROM sort WHERE name LIKE '%${keyword}%'`;

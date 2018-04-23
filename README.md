@@ -11,11 +11,15 @@ A live aggregation web for fun
 
 * 数据的存储，MySQL数据库，使用sql语句，每次请求到数据时，对表进行先清空再插入的操作。
 
-* 插入的数据量过大，需要设置 mysql 默认的 max_allowed_packet
+* 插入的数据量过大，需要设置 mysql 默认的 max_allowed_packet。
+
+* 使用 node-schedule 每隔5分钟请求一次。
 
 ### 服务端（Express）
 
 * 处理请求，执行数据库操作。
+
+* 使用token处理登录权限
 
 ### 前端（React+Redux）
 

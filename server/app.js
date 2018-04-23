@@ -4,10 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
 
 var index = require('./routes/index');
 var live = require('./routes/live');
 var sort = require('./routes/sort');
+var user = require('./routes/user');
+
+var qliveConfig = require('./config/db').qlive;
 
 var app = express();
 
@@ -23,8 +28,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var sessionStore = new MySQLStore(qliveConfig);
+app.use(session({
+  key: 'session_cookie_key',
+  secret: 'session_cookie_secret',
+  store: sessionStore,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000
+  },
+  resave: false,
+  saveUninitialized: false
+}));
+
 app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, access-token');
+  res.header('Access-Control-Expose-Headers', 'access-token');
   // res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
 
   next();
@@ -34,6 +54,7 @@ app.all('*', function (req, res, next) {
 app.use('/', index);
 app.use('/live', live);
 app.use('/sort', sort);
+app.use('/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

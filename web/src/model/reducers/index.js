@@ -7,12 +7,14 @@ import {
 } from "./live";
 import { sorts } from "./sort";
 import { search } from "./search";
+import { user } from "./user";
 
 const rootReducer = combineReducers({
   lives,
   livesLoading,
   sorts,
-  search
+  search,
+  user
 });
 
 export default rootReducer;

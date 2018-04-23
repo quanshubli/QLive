@@ -13,4 +13,5 @@ export default {
     count: 0,
     list: []
   },
+  user: localStorage.getItem('access-token') ? JSON.parse(localStorage.getItem('access-token')).user : null
 };

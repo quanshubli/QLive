@@ -2,7 +2,11 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: "http://127.0.0.1:3000",
-  timeout: 3000
+  timeout: 3000,
+  headers: {
+    'access-token': localStorage.getItem('access-token')
+  },
+  withCredentials: true
 });
 
 // const filterResponse = (res) => {
@@ -34,6 +38,10 @@ const fetch = {
       data
     })
       .then((res) => {
+        const token = res.headers['access-token'];
+        if (token) {
+          localStorage.setItem('access-token', token);
+        }
         callback && callback(res.data);
       })
       .catch((err) => {

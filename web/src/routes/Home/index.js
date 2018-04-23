@@ -1,8 +1,10 @@
-import React from "react";
+import React from 'react';
 
-const Home = () => {
+import HomeContainer from '../../containers/Home';
+
+const Home = (props) => {
   return (
-    <div></div>
+    <HomeContainer {...props} />
   );
 };
 
